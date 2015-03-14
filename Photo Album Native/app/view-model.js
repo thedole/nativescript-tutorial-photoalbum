@@ -33,6 +33,7 @@ var PhotoAlbumModel = (function (_super) {
 	__extends(PhotoAlbumModel, _super);
 	function PhotoAlbumModel() {
 		_super.call(this);
+		this.set("message", "Add new images");
 	}
 	return PhotoAlbumModel;
 })(observable.Observable);
@@ -50,6 +51,8 @@ PhotoAlbumModel.prototype.tapAction = function () {
 	array.push(item8);
 	array.push(item9);
 	array.push(item10);
+
+	this.set("message", "Images added. Total images: " + array.length);
 };
 
 exports.PhotoAlbumModel = PhotoAlbumModel;
