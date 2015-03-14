@@ -3,15 +3,6 @@ var observableArrayModule = require("data/observable-array");
 var imageSourceModule = require("image-source");
 var Everlive = require('./everlive.all.min');
 var everlive = new Everlive("PubHOnjM6z195qe7");
-var fileSystemModule = require("file-system");
-
-
-
-var array = new observableArrayModule.ObservableArray();
-
-function imageFromSource(imageName) {
-	return imageSourceModule.fromFile(fileSystemModule.path.join(__dirname, directory + imageName));
-};
 
 var __extends = this.__extends || function (d, b) {
 	for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -29,28 +20,42 @@ var PhotoAlbumModel = (function (_super) {
 	return PhotoAlbumModel;
 })(observable.Observable);
 
+var backendArray = new observableArrayModule.ObservableArray();
 Object.defineProperty(PhotoAlbumModel.prototype, "photoItems", {
 	get: function () {
-		return array;
+		everlive.Files.get()
+			.then(function (data) {
+				data.result.forEach(function (fileMetadata) {
+					imageSourceModule.fromUrl(fileMetadata.Uri)
+						.then(function (result) {
+							var item = {
+								itemImage: result
+							};
+							backendArray.push(item);
+						});
+			});
+		},
+		function (error) { });
+
+		return backendArray;
 	},
 	enumerable: true,
 	configurable: true
 });
 
-PhotoAlbumModel.prototype.tapAction = function () {
-	everlive.Files.get()
-		.then(function (files) {
-			var len = files.length;
-
-			//file = {
-			//	"Filename": Math.random().toString(36).substring(2, 15) + ".jpg",
-			//	"ContentType": "image/jpeg",
-			//	"base64": image.itemImage.toBase64String("JPEG", 100)
-			//};
-			for (var i = 0; i < len; i++) {
-				array.push(files[i].base64);
-			}
-		});
-};
+var messages = [
+	"No milk today",
+	"Hasta la vista baby",
+	"I ain't nothing but a hound dog",
+	"For those about to rock, we salute you!"
+];
+PhotoAlbumModel.prototype.tapAction = (function(list){
+	var len = list.length,
+		i = 0;
+	return function () {
+		this.set("message", list[i]);
+		i = ++i === len ? 0 : i;
+	};
+})(messages);
 
 exports.PhotoAlbumModel = PhotoAlbumModel;
