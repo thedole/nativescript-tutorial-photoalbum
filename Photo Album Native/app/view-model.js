@@ -58,18 +58,23 @@ PhotoAlbumModel.prototype.tapAction = function () {
 
 	this.set("message", "Images added. Total images: " + array.length);
 
-	var len = array.length;
+	var image,
+		file,
+		len = array.length;
+
 	for (i = 0; i < len; i++) {
-		var file = {
+		image = array.pop();
+		file = {
 			"Filename": Math.random().toString(36).substring(2, 15) + ".jpg",
 			"ContentType": "image/jpeg",
-			"base64": array.getItem(i).itemImage.toBase64String("JPEG", 100)
+			"base64": image.itemImage.toBase64String("JPEG", 100)
 		};
 
 		everlive.Files.create(file,
 			function (data) {
 			},
 			function (error) {
+				array.push(image);
 			});
 	}
 };
