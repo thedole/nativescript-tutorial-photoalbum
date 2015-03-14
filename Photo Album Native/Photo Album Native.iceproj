@@ -27,7 +27,18 @@
     <Content Include="app\bootstrap.js" />
     <Content Include="app\main-page.js" />
     <Content Include="app\main-page.xml" />
+    <Content Include="app\view-model.js" />
     <Content Include="app\package.json" />
+    <Content Include="app\res\01.jpg" />
+    <Content Include="app\res\02.jpg" />
+    <Content Include="app\res\03.jpg" />
+    <Content Include="app\res\04.jpg" />
+    <Content Include="app\res\05.jpg" />
+    <Content Include="app\res\06.jpg" />
+    <Content Include="app\res\08.jpg" />
+    <Content Include="app\res\09.jpg" />
+    <Content Include="app\res\07.jpg" />
+    <Content Include="app\res\10.jpg" />
     <Content Include="tns_modules\application\application-common.js" />
     <Content Include="tns_modules\application\application.android.js" />
     <Content Include="tns_modules\application\application.ios.js" />
@@ -273,6 +284,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />
+    <Folder Include="app\res\" />
     <Folder Include="App_Resources\" />
     <Folder Include="App_Resources\Android\" />
     <Folder Include="App_Resources\Android\drawable-hdpi\" />
