@@ -1,7 +1,11 @@
 var observable = require("data/observable");
 var observableArrayModule = require("data/observable-array");
 var imageSourceModule = require("image-source");
+var Everlive = require('./everlive.all.min');
+var everlive = new Everlive("PubHOnjM6z195qe7");
 var fileSystemModule = require("file-system");
+
+
 
 var array = new observableArrayModule.ObservableArray();
 var directory = "/res/";
@@ -53,6 +57,21 @@ PhotoAlbumModel.prototype.tapAction = function () {
 	array.push(item10);
 
 	this.set("message", "Images added. Total images: " + array.length);
+
+	var len = array.length;
+	for (i = 0; i < len; i++) {
+		var file = {
+			"Filename": Math.random().toString(36).substring(2, 15) + ".jpg",
+			"ContentType": "image/jpeg",
+			"base64": array.getItem(i).itemImage.toBase64String("JPEG", 100)
+		};
+
+		everlive.Files.create(file,
+			function (data) {
+			},
+			function (error) {
+			});
+	}
 };
 
 exports.PhotoAlbumModel = PhotoAlbumModel;

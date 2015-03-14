@@ -25,6 +25,7 @@
     <Content Include="app\app.css" />
     <Content Include="app\app.js" />
     <Content Include="app\bootstrap.js" />
+    <Content Include="app\everlive.all.min.js" />
     <Content Include="app\main-page.css" />
     <Content Include="app\main-page.js" />
     <Content Include="app\main-page.xml" />
