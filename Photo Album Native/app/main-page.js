@@ -8,3 +8,7 @@ function onPageLoaded(args) {
 	var page = args.object;
 	page.bindingContext = model;
 }
+
+function buttonTap(args) {
+	model.tapAction();
+}
