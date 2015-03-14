@@ -15,8 +15,8 @@ var item6 = { itemImage: imageFromSource("06.jpg") };
 array.push([item1, item2, item3, item4, item5, item6]);
 var item7 = { itemImage: imageFromSource("07.jpg") };
 var item8 = { itemImage: imageFromSource("08.jpg") };
-var item7 = { itemImage: imageFromSource("09.jpg") };
-var item8 = { itemImage: imageFromSource("10.jpg") };
+var item9 = { itemImage: imageFromSource("09.jpg") };
+var item10 = { itemImage: imageFromSource("10.jpg") };
 
 function imageFromSource(imageName) {
 	return imageSourceModule.fromFile(fileSystemModule.path.join(__dirname, directory + imageName));
